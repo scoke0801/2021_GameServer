@@ -5,53 +5,67 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Framework">
+      <UniqueIdentifier>{45cf812f-c961-48bc-8df7-8158481cab34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Gameobject">
+      <UniqueIdentifier>{042a6b7a-4ee4-49ce-aa87-f3842b753c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Main">
+      <UniqueIdentifier>{01cbb91e-24ee-4981-9b98-d7cb15338501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Main\stdafx">
+      <UniqueIdentifier>{ca708456-884a-4cd6-81f3-c6dcbf520799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Util">
+      <UniqueIdentifier>{77dc0e48-f002-4e10-98d4-bc2292c53281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Communication">
+      <UniqueIdentifier>{b15b2e92-cce1-418d-9ec4-e6d6c4cb9970}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Main.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Framework</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>소스 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>소스 파일\Main\stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일\Main\stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>소스 파일\Main\stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>소스 파일\Util</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Server\TP_Server\protocol.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Communication</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Framework</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\Main\stdafx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

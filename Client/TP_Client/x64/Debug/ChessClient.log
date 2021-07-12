@@ -1,0 +1,183 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(ChessClient.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  stdafx.cpp
+  Framework.cpp
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(132,16): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(174,9): warning C4101: 's_wsabuf' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(174,22): warning C4101: 'r_wsabuf' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(173,8): warning C4101: 'bytes_sent' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(173,20): warning C4101: 'bytes_recv' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(424,34): warning C4244: '=': 'LONG'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(504,23): warning C4244: '=': 'float'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(505,23): warning C4244: '=': 'float'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(521,24): warning C4244: '=': 'float'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(522,23): warning C4244: '=': 'float'에서 'short'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(485,7): warning C4101: 'buf' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(732,97): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(732,52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(789,46): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(789,20): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(788,66): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(788,40): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(794,41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(799,36): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(798,41): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(812,45): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Framework.cpp(811,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameObject.cpp
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(102,35): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(102,18): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(101,41): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(101,18): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(130,29): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(129,28): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(128,48): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(127,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(126,33): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(126,16): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(125,39): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(125,16): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(143,38): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(141,57): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(138,33): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(138,16): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(137,39): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(137,16): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(156,36): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(154,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(152,33): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(152,16): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(151,39): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(151,16): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(168,37): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(166,56): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(163,33): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(163,16): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(162,39): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(162,16): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(180,35): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(178,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(176,33): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(176,16): warning C4244: '인수': 'const T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(175,39): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(175,16): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(189,61): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(189,29): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(193,74): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\GameObject.cpp(193,29): warning C4244: '인수': 'T'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+          with
+          [
+              T=float
+          ]
+  Main.cpp
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Main.cpp(130,55): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GS\텀프\Client\TP_Client\Main.cpp(131,57): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  ChessClient.vcxproj -> C:\UsingProject\2021_GS\텀프\Client\x64\Debug\TP_Client.exe
