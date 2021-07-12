@@ -10,8 +10,7 @@
 /* RetCode Return code of failing command
 /************************************************************************/ 
 constexpr int NAME_LEN = 30;
-
-
+ 
 extern mutex	g_sector_locker;
 
 extern array <ServerObject*, MAX_USER + 1> objects;
