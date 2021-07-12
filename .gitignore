@@ -31,3 +31,15 @@
 *.out
 *.app
 *.ipch
+*.db-shm
+*.db-wal
+*.opendb
+*.db
+*.tlog
+*.tlog
+*.tlog
+*.db
+Server/.vs/TP_Server/v16/.suo
+*.db
+*.pdb
+*.db

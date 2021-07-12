@@ -1,48 +1,15 @@
-﻿  stdafx.cpp
-  astar.cpp
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\astar.cpp(107,22): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  handle_db.cpp
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(153,21): warning C4101: 'user_item2' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,24): warning C4101: 'user_y' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(156,54): warning C4101: 'cb_user_item4' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(156,39): warning C4101: 'cb_user_item3' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(156,24): warning C4101: 'cb_user_item2' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(153,33): warning C4101: 'user_item3' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(153,9): warning C4101: 'user_item1' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,63): warning C4101: 'user_gold' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,16): warning C4101: 'user_x' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,44): warning C4101: 'user_hp' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(151,14): warning C4101: 'user_name' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,32): warning C4101: 'user_level' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(153,45): warning C4101: 'user_item4' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(152,53): warning C4101: 'user_exp' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(156,9): warning C4101: 'cb_user_item1' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(242,21): warning C4101: 'user_item2' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,24): warning C4101: 'user_y' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(245,54): warning C4101: 'cb_user_item4' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(245,39): warning C4101: 'cb_user_item3' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(245,24): warning C4101: 'cb_user_item2' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(242,33): warning C4101: 'user_item3' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(242,9): warning C4101: 'user_item1' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,63): warning C4101: 'user_gold' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,16): warning C4101: 'user_x' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,44): warning C4101: 'user_hp' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(240,14): warning C4101: 'user_name' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,32): warning C4101: 'user_level' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(242,45): warning C4101: 'user_item4' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(241,53): warning C4101: 'user_exp' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\handle_db.cpp(245,9): warning C4101: 'cb_user_item1' :참조되지 않은 지역 변수입니다.
-  main.cpp
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(679,7): warning C4101: 'buf' :참조되지 않은 지역 변수입니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1693,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1702,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1913,16): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1914,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(2031,26): warning C4244: '*=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(2235,27): warning C4244: '-=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Previous IPDB not found, fall back to full compilation.
+﻿  main.cpp
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(711,7): warning C4101: 'buf' :참조되지 않은 지역 변수입니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1725,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1734,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1945,16): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(1946,13): warning C4244: '초기화 중': 'lua_Number'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(2063,26): warning C4244: '*=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\TP_Server\main.cpp(2267,27): warning C4244: '-=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
   코드를 생성하고 있습니다.
-  All 1166 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 1166 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   st_iocp_server.vcxproj -> C:\UsingProject\2021_GameServer_Termproject\2021_GameServer_Termproject_vacation\Server\x64\Release\sector_server.exe

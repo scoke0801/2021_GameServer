@@ -3,7 +3,11 @@
 extern priority_queue<TIMER_EVENT> timer_queue;
 extern mutex timer_lock;
 
+// iocp? Input/Ouptput Completion Port
+// iocp 통신에 사용하기 위한 iocp 객체
 extern HANDLE h_iocp;
+
+// 맵 데이터
 extern MAP_TILE_DATA g_TileDatas[WORLD_HEIGHT][WORLD_WIDTH];
 
 // 섹터 크기 정보 등은 클라에서 알 필요 없음...
@@ -15,47 +19,83 @@ extern array <ServerObject*, MAX_USER + 1> objects;
 extern string itemNames[5]; 
 int itemGolds[5] = { 0, 5, 30, 15, 100 };
 
+// 시야 범위 안에 있는가
 bool IsInSight(int id_a, int id_b);
 
+// 어그로 몬스터의 시야 범위 안에 있는 대상을 탐색한다.
 int FindTargetInAgroRegion(int monId);
+// 어그로 몬스터의 시야 범위 안에 있는 대상인지 확인한다.
 bool IsInAgroRegion(int monId, int tartgetId);
+// 이동형 몬스터의 행동 범위 안인지 확인한다.
 bool IsInRoamingRegion(int monId, int x,int y);
 
+// 클라이언트와의 연결을 종료한다.
 void Disconnect(int p_id);
 void DisplayError(const char* msg, int err_no);
 
-void SendPacket(int p_id, void* p);
 
 void DoRecv(int key);
+
+// 새롭게 접속하는 클라이언트를 위하여 데이터 초기화 
 int GetNewPlayerId(SOCKET p_socket);
+
+// 로그인 성공 / 실패 처리
 void SendLoginOkPacket(int p_id);
 void SendLoginFailePacket(int p_id);
 
+// 패킷 전송함수들 
+void SendPacket(int p_id, void* p);
 void SendMovePacket(int c_id, int p_id);
 void SendAddObject(int c_id, int p_id);
 void SendRemoveObject(int c_id, int p_id); 
 void SendStatChangePacket(int id);
 void SendAddItem(int id, ITEM_TYPE type);
 
-void attacked(int attackerId, int victimId, int power);
+void SendChatPacket(int c_id, int p_id, const char* mess);
 
+// 인자로 넘어오는 패킷을 대상을 보고있는 모든 플레이어에게 전송 ,섹터 갱신은 여기서 안함
+void SendRemovePacketToViewObjects(int target);
+void SendStatPacketToViewObjects(int target, void* packet);
+
+// 피격 / 이동 / 공격 행동에 대한 처리를 정의한 함수들
+void attacked(int attackerId, int victimId, int power);
 void DoMove(int p_id, DIRECTION dir); 
-void ReservePlayerEvent(int pl, OP_TYPE eventInfo, int delay);
 void DoAttack(int p_id, int power);
+
+// return -1 : 실패, 성공시 목표 대상의 id 반환
+int CheckCanAttack(int atteckerId);
+
+// 플레이어 / 몬스터의 리스폰 처리를 위한 함수들
+void DoPlayerRespone(int id);
+void DoMonsterRespone(int id);
+
+// 클라이언트와 통신의 결과로 얻어진 패킷을 처리하기 위한 함수
 void ProcessPacket(int p_id, unsigned char* p_buf);
 
-void MainWorkerFunc(HANDLE h_iocp, SOCKET l_socket);
- 
+// NPC인지 일반 플레이어인지 확인한다.
 bool IsNpc(int id); 
+
+// npc 이동 행동을 처리하기 위한 함수들
 void do_npc_path_move(ServerObject* npc);
 void do_npc_random_move(ServerObject* npc);
 void do_npc_script_move(ServerObject* npc, int prev_x, int prev_y); // 스크립트에서 처리한 결과를 플레이어에게 전송
 
+// 플레이어의 행동을 예약한다.
+void ReservePlayerEvent(int pl, OP_TYPE eventInfo, int delay);
+
+// 우선순위 큐에 지정된 행동에 대한 이벤트를 추가한다.
 void AddEvent(int obj, OP_TYPE e_type, int delay_ms);
 
+// 우선순위 큐를 사용하는 타이머가 동작하며 시간이 경과한 이벤트를 수행하도록 iocp커널 객체에 알린다.
 void DoTimerWork();
+
+// 주요 동작에 대한 처리를 수행하는 메인 워커 쓰레드 처리 함수
+void MainWorkerFunc(HANDLE h_iocp, SOCKET l_socket);
+
+// 플레이어의 시야 범위에 들어온 NPC를 동작하도록 한다.
 void WakeUpNPC(int pl_id, int npc_id);
 
+// Lua 스크립트를 통한 동작을 위한 함수들
 int API_get_x(lua_State* L);
 int API_get_y(lua_State* L);
 int API_set_x(lua_State* L);
@@ -65,22 +105,14 @@ int API_set_move_type(lua_State* L);
 
 int API_send_mess(lua_State* L);
 int API_add_event(lua_State* L);
+
 void DisplayLuaError(lua_State* L, const char* fmt, ...);
 
-//int API_set_move_count(lua_State* L);
-void SendChatPacket(int c_id, int p_id, const char* mess);
-
-// 인자로 넘어오는 패킷을 대상을 보고있는 모든 플레이어에게 전송 ,섹터 갱신은 여기서 안함
-void SendRemovePacketToViewObjects(int target); 
-void SendStatPacketToViewObjects(int target, void* packet);
-
+// 맵 / 객체 초기화 함수들
 void ReadMapData();
-void InitObjects(); 
-void DoPlayerRespone(int id);
-void DoMonsterRespone(int id);
-// return -1 : 실패, 성공시 목표 대상의 id 반환
-int CheckCanAttack(int atteckerId);
+void InitObjects();
 
+// 아이템 처리에 관련된 함수들
 void ExpUp(int playerId, int monId);
 void GoldUp(int playerId, int monId);
 void GetItem(int playerId, int monId, ITEM_TYPE itemType);
@@ -88,13 +120,17 @@ void UseItem(int playerId, int itexIdx);
 
 int main()
 {
+	// 에러 메시지 한글 출력 되도록 설정
 	setlocale(LC_ALL, "korean");
 	std::wcout.imbue(std::locale("korean"));
 
 	srand((unsigned int)time(NULL));
+
+	// 맵 데이터, 오브젝트 초기화
 	ReadMapData();
 	InitObjects(); 
 
+	// 서버 초기화
 	WSADATA WSAData;
 	WSAStartup(MAKEWORD(2, 2), &WSAData);
 	 
@@ -132,10 +168,7 @@ int main()
 	timer_thread.join(); 
 	for (auto& th : MainWorkerFunc_threads)
 		th.join();
-
-	//thread queue_thread(queue_MainWorkerFunc);
-	//queue_thread.join();
-
+	 
 	closesocket(listenSocket);
 	WSACleanup();
 }
@@ -947,6 +980,7 @@ void MainWorkerFunc(HANDLE h_iocp, SOCKET l_socket)
 		ULONG_PTR ikey;
 		WSAOVERLAPPED* over;
 
+		// 작업 완료된 내용이 있으면 얻어옵니다.
 		BOOL ret = GetQueuedCompletionStatus(h_iocp, &num_bytes,
 			&ikey, &over, INFINITE);
 
