@@ -43,3 +43,13 @@ Server/.vs/TP_Server/v16/.suo
 *.db
 *.pdb
 *.db
+Client/.vs/TP_Client/v16/Browse.VC.db
+Client/.vs/TP_Client/v16/.suo
+*.db
+
+Client/.vs
+**/.vs
+**/Debug
+**/x64
+**/**/x64
+**/**/Debug

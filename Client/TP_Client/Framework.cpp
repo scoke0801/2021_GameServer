@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Resource.h"
-#include "Framework.h"  
+#include "Framework.h"
+#include "TestScene.h"
+#include "TitleScene.h"
+
 #pragma warning(disable  : 4996)    // mbstowcs unsafe###
 #define MAX_GAME_LOOP 30
 #define FPS 1 / 60.0f
@@ -59,6 +62,11 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 
 void CFramework::BuildScene()
 { 
+#ifdef TEST_MODE
+	ChangeScene<CTestScene>(); 
+#else
+	ChangeScene<CTitleScene>();
+#endif 
 	m_ServerIp = "127.0.0.1";
 	ReadMapData();
 	m_Background.Load(L"Resources/Background.png");

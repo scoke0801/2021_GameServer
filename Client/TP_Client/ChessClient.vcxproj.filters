@@ -27,6 +27,18 @@
     <Filter Include="소스 파일\Communication">
       <UniqueIdentifier>{b15b2e92-cce1-418d-9ec4-e6d6c4cb9970}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Scene">
+      <UniqueIdentifier>{935807e5-2a1e-4de9-8e80-9e795f780e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\Game">
+      <UniqueIdentifier>{6ff26140-a230-4d1d-af44-b5d81711958e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\Test">
+      <UniqueIdentifier>{356b72fd-94e7-4c22-a8e7-80d38f36cd92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Scene\Title">
+      <UniqueIdentifier>{75571a3d-8a5d-4e16-b8d4-3545a3561ccf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework.h">
@@ -53,6 +65,18 @@
     <ClInclude Include="..\..\Server\TP_Server\protocol.h">
       <Filter>소스 파일\Communication</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>소스 파일\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>소스 파일\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>소스 파일\Scene\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework.cpp">
@@ -66,6 +90,18 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일\Main\stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>소스 파일\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\Scene\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

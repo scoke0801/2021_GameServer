@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 
+class CScene;
+
 constexpr int MAX_BUFFER = 1024;
 constexpr int MAX_NAME_LEN = 200;
 struct EX_OVER {
@@ -22,6 +24,7 @@ struct SESSION {
 class CFramework
 {
 private:
+	CScene* m_CurScene;
 	CImage m_Background;
 	CImage m_TileImage;
 	CImage m_ChatUi;
@@ -34,7 +37,7 @@ private:
 	array<CGameObject, MAX_USER> m_Objects;
 	array<CGameObject, 400 > m_Npcs;
 	vector<CGameObject*> m_ToDrawObjects;
-	
+
 	CGameObject* m_Player = nullptr;
 
 	bool m_IsOnChatting = false;
@@ -43,7 +46,7 @@ private:
 	ITEM_TYPE m_SelectedItem = ITEM_TYPE::I_NOT;
 	short m_CaretYPos = 300;
 
-	MAP_TILE_DATA m_TileDatas[WORLD_HEIGHT][WORLD_WIDTH]; 
+	MAP_TILE_DATA m_TileDatas[WORLD_HEIGHT][WORLD_WIDTH];
 
 	// 맵 타일을 그리기 위한 위치
 	short m_LeftX = 0;
@@ -53,13 +56,13 @@ private:
 	string	m_ServerIp = "127.0.0.1";
 	string	m_PlayerName;
 	string  m_ChatData;
-	TCHAR*	m_ChatDataT = NULL;
+	TCHAR* m_ChatDataT = NULL;
 
 	vector<TCHAR*> m_ChatDatasT;
 	vector<string> m_ChatDatas;
 
-	bool	m_isServerConnected = false; 
-	
+	bool	m_isServerConnected = false;
+
 	SOCKET	m_SocketServer;
 
 	short	m_ClientId = -1;
@@ -68,7 +71,7 @@ private:
 	HINSTANCE m_hInst;
 
 	RECT m_rtClient;
-	 
+
 	// 더블버퍼링 처리를 위한 변수입니다.
 	HDC m_hdc;
 	HBITMAP m_hbmp;
@@ -103,7 +106,7 @@ private:
 public:
 	static CFramework& GetInstance() {
 		static CFramework self;
-		return self; 
+		return self;
 	}
 	void init(HWND hWnd, HINSTANCE hInst);
 
@@ -112,7 +115,7 @@ public:
 	void update(float timeElapsed);
 	void draw(HDC hdc);
 
-	LRESULT ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam); 
+	LRESULT ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
 	// WM_SOCKET 메시지 받은 경우 이를 처리
@@ -138,11 +141,30 @@ private:
 private:
 	// 투명하게 그릴 때, 각각 1.함수 포인터를 이용해서 
 	// 2.이미지를 넘겨주고 직접 그리게
-	void DrawTransparent(HDC hdc, BYTE alphaValue, void (CFramework::*ptr)(HDC));
+	void DrawTransparent(HDC hdc, BYTE alphaValue, void (CFramework::* ptr)(HDC));
 	void DrawTransparent(HDC hdc, int startX, int startY, int sizeX, int sizeY, BYTE alphaValue, const CImage& targetImage);
 	void DrawMap(HDC hdc);
 	void DrawChatUi(HDC hdc);
 
 	void DrawPlayerInfo(HDC hdc);
 	void ReadMapData();
+
+public:
+	template <typename SceneName>
+	void ChangeScene(void* pContext = nullptr)
+	{ 
+		CScene* scene = new SceneName;
+		static CScene* prevScene;
+		scene->Init(m_rtClient, this);
+		scene->SendDataToNextScene(pContext);
+
+		if (m_CurScene)
+		{
+			prevScene = m_CurScene;
+			//delete m_pCurScene;
+			m_CurScene = nullptr;
+		}
+
+		m_CurScene = scene; 
+	}
 };
