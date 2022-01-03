@@ -18,6 +18,10 @@ void CTestScene::Draw(HDC hdc)
 {
 }
 
+void CTestScene::ProcessPacket(unsigned char* p_buf)
+{
+}
+
 void CTestScene::Communicate(SOCKET& sock)
 {
 }

@@ -22,77 +22,7 @@ struct SESSION {
 };
  
 class CFramework
-{
-private:
-	CScene* m_CurScene;
-	CImage m_Background;
-	CImage m_TileImage;
-	CImage m_ChatUi;
-	CImage m_PlayerUiBoard;
-	CImage m_ItemUIImage;
-	CImage m_Items;
-	CImage m_SellerUI;
-	CImage m_TitleImage;
-
-	array<CGameObject, MAX_USER> m_Objects;
-	array<CGameObject, 400 > m_Npcs;
-	vector<CGameObject*> m_ToDrawObjects;
-
-	CGameObject* m_Player = nullptr;
-
-	bool m_IsOnChatting = false;
-	bool m_IsOnTypingID = false;
-	bool m_IsSellerClicked = false;
-	ITEM_TYPE m_SelectedItem = ITEM_TYPE::I_NOT;
-	short m_CaretYPos = 300;
-
-	MAP_TILE_DATA m_TileDatas[WORLD_HEIGHT][WORLD_WIDTH];
-
-	// 맵 타일을 그리기 위한 위치
-	short m_LeftX = 0;
-	short m_TopY = 0;
-
-private:
-	string	m_ServerIp = "127.0.0.1";
-	string	m_PlayerName;
-	string  m_ChatData;
-	TCHAR* m_ChatDataT = NULL;
-
-	vector<TCHAR*> m_ChatDatasT;
-	vector<string> m_ChatDatas;
-
-	bool	m_isServerConnected = false;
-
-	SOCKET	m_SocketServer;
-
-	short	m_ClientId = -1;
-private:
-	HWND m_hWnd;
-	HINSTANCE m_hInst;
-
-	RECT m_rtClient;
-
-	// 더블버퍼링 처리를 위한 변수입니다.
-	HDC m_hdc;
-	HBITMAP m_hbmp;
-
-	// 시간 처리를 위한 변수입니다. 
-	std::chrono::system_clock::time_point m_currentTime[2];
-	std::chrono::duration<double> m_timeElapsed;   // 시간이 얼마나 지났나
-
-	std::chrono::duration<double> m_serverUpdated; // 시간이 얼마나 지났나 
-	double m_dLag;
-	double m_fps;
-
-	// 타이틀바 출력 관련 변수입니다.
-	TCHAR m_captionTitle[50];
-	int m_titleLength;
-	std::chrono::system_clock::time_point m_lastUpdateTime;
-	std::chrono::duration<double> m_updateElapsed;
-
-private:
-	SESSION m_Client;
-
+{ 
 private:
 	void BuildScene();
 	void InitBuffers();
@@ -117,12 +47,18 @@ public:
 
 	LRESULT ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
+	// 입력받은 IP주소로 서버와 연결
+	bool ConnectToServer();
+
+public:
+	string GetServerIP() const { return m_ServerIp; }
+	bool IsServerConnected() const { return m_isServerConnected; }
+	short GetClientId() const { return m_ClientId; }
+	  
 private:
 	// WM_SOCKET 메시지 받은 경우 이를 처리
 	void ProcessCommunication(WPARAM wParam, LPARAM lParam);
 
-	// 입력받은 IP주소로 서버와 연결
-	bool ConnectToServer();
 
 	// 서버로부터 데이터를 받아옴
 	void DoRecv();
@@ -130,24 +66,10 @@ private:
 	// 서버로부터 받은 데이터를 패킷단위로 처리
 	void ProcessPacket(unsigned char* p_buf);
 
+	// 패킷 전송
 	bool SendPacket(void* p);
 	bool SendPacket(SOCKET& sock, char* packet, int packetSize, int& retVal);
 
-	void SendLoginPacket();
-	void SendMovePacket(DIRECTION dir);
-	void SendChatPacket();
-	void SendAttackPacket();
-	void SendUseItem(int idx);
-private:
-	// 투명하게 그릴 때, 각각 1.함수 포인터를 이용해서 
-	// 2.이미지를 넘겨주고 직접 그리게
-	void DrawTransparent(HDC hdc, BYTE alphaValue, void (CFramework::* ptr)(HDC));
-	void DrawTransparent(HDC hdc, int startX, int startY, int sizeX, int sizeY, BYTE alphaValue, const CImage& targetImage);
-	void DrawMap(HDC hdc);
-	void DrawChatUi(HDC hdc);
-
-	void DrawPlayerInfo(HDC hdc);
-	void ReadMapData();
 
 public:
 	template <typename SceneName>
@@ -167,4 +89,43 @@ public:
 
 		m_CurScene = scene; 
 	}
+
+
+private:
+	CScene* m_CurScene;
+
+private:
+	string	m_ServerIp = "127.0.0.1";
+
+	bool	m_isServerConnected = false;
+
+	SOCKET	m_SocketServer;
+
+	short	m_ClientId = -1;
+
+	SESSION m_Client;
+private:
+
+	HWND m_hWnd;
+	HINSTANCE m_hInst;
+
+	RECT m_rtClient;
+
+	// 더블버퍼링 처리를 위한 변수입니다.
+	HDC m_hdc;
+	HBITMAP m_hbmp;
+
+	// 시간 처리를 위한 변수입니다. 
+	std::chrono::system_clock::time_point m_currentTime[2];
+	std::chrono::duration<double> m_timeElapsed;   // 시간이 얼마나 지났나
+
+	std::chrono::duration<double> m_serverUpdated; // 시간이 얼마나 지났나 
+	double m_dLag;
+	double m_fps;
+
+	// 타이틀바 출력 관련 변수입니다.
+	TCHAR m_captionTitle[50];
+	int m_titleLength;
+	std::chrono::system_clock::time_point m_lastUpdateTime;
+	std::chrono::duration<double> m_updateElapsed; 
 };

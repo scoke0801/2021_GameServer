@@ -7,7 +7,10 @@
 
 
 CScene::CScene()
-{
+{ 
+	m_isServerConnected = CFramework::GetInstance().IsServerConnected();
+	m_ClientId = CFramework::GetInstance().GetClientId();
+	m_ServerIp = CFramework::GetInstance().GetServerIP();
 }
 
 CScene::~CScene()
@@ -18,10 +21,37 @@ bool CScene::ProcessInput(UCHAR* pKeysBuffer)
 {
 	return false;
 }
+ 
+void CScene::DrawTransparent(HDC hdc, int startX, int startY, int sizeX, int sizeY, BYTE alphaValue, const CImage& targetImage)
+{
+	HDC LayDC;
+	HBITMAP Lay;
+	BLENDFUNCTION bf;
+
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = 0;
+	bf.SourceConstantAlpha = alphaValue;
+
+	Lay = CreateCompatibleBitmap(hdc, m_rtClient.right, m_rtClient.bottom);
+	LayDC = CreateCompatibleDC(hdc);
+	SelectObject(LayDC, Lay);
+	TransparentBlt(LayDC, 0, 0, m_rtClient.right, m_rtClient.bottom
+		, hdc, m_rtClient.left, m_rtClient.top, m_rtClient.right, m_rtClient.bottom, NULL);
+
+	targetImage.TransparentBlt(hdc, startX, startY, sizeX, sizeY,
+		0, 0, targetImage.GetWidth(), targetImage.GetHeight(), NULL);
+
+	AlphaBlend(hdc, m_rtClient.left, m_rtClient.top, m_rtClient.right, m_rtClient.bottom
+		, LayDC, 0, 0, m_rtClient.right, m_rtClient.bottom, bf);
+
+	DeleteDC(LayDC);
+	DeleteObject(Lay);
+}
 
 CNullScene::CNullScene()
 {
-	m_Image.Load(_T("assets/NullSceneInfoImage.png"));
+	//m_Image.Load(_T("assets/NullSceneInfoImage.png"));
 	m_Type = SceneType::NullScene;
 }
 
