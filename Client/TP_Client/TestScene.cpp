@@ -5,6 +5,11 @@ CTestScene::CTestScene() : CScene()
 {
 	m_Type = SceneType::TitleScene;
 	m_TileImage.Load(L"Resources/GameTileX.png");
+
+	m_Player = new CGameObject();	
+	m_Player->SetType(ObjectType::Player);
+	m_Player->Show();
+	m_Player->MoveTo({ 10,10 });
 }
 
 CTestScene::~CTestScene()
@@ -13,6 +18,7 @@ CTestScene::~CTestScene()
 
 void CTestScene::Update(float timeElapsed)
 {
+	m_Player->Update(timeElapsed);
 }
 
 void CTestScene::Draw(HDC hdc)
@@ -30,6 +36,11 @@ void CTestScene::Draw(HDC hdc)
 				(int)m_TileDatas[m_TopY + i][m_LeftX + j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH);
 		}
 	}
+
+
+	m_Player->Draw(hdc,
+		m_LeftX * TILE_WIDTH,
+		m_TopY * TILE_WIDTH);
 }
 
 void CTestScene::ProcessPacket(unsigned char* p_buf)
@@ -38,6 +49,49 @@ void CTestScene::ProcessPacket(unsigned char* p_buf)
 
 void CTestScene::Communicate(SOCKET& sock)
 {
+}
+
+LRESULT CTestScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_KEYDOWN: 
+	{
+		Vector2i tileIndex = m_Player->GetTileIndex();
+
+		switch (wParam)
+		{
+		case VK_LEFT:
+			m_Player->MoveTo({tileIndex.x - 1, tileIndex.y }); 
+			m_Player->SetDirection(DIRECTION::D_W);
+			break;
+		case VK_RIGHT:
+			m_Player->MoveTo({ tileIndex.x + 1, tileIndex.y });
+			m_Player->SetDirection(DIRECTION::D_E);
+			break;
+		case VK_UP:
+			m_Player->MoveTo({ tileIndex.x, tileIndex.y-1 });
+			m_Player->SetDirection(DIRECTION::D_N);
+			break;
+		case VK_DOWN:
+			m_Player->MoveTo({ tileIndex.x, tileIndex.y+1 });
+			m_Player->SetDirection(DIRECTION::D_S);
+			break;
+		}
+
+		tileIndex = m_Player->GetTileIndex();
+		m_LeftX = tileIndex.x - SCREEN_WIDTH * 0.5f;
+		m_TopY = tileIndex.y - SCREEN_HEIGHT * 0.5f;
+	}
+			return 0;
+		case WM_LBUTTONDOWN:
+		{
+			int mx = LOWORD(lParam);
+			int my = HIWORD(lParam);
+		return 0;
+		}
+	}
+	return 0;
 }
 
 void CTestScene::ProcessMouseClick(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

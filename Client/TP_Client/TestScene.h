@@ -17,7 +17,7 @@ public:
 
 	virtual void Communicate(SOCKET& sock);
 
-	virtual LRESULT ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) { return 0; }
+	virtual LRESULT ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	virtual void ProcessMouseClick(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	virtual void ProcessMouseInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {};
 	virtual void ProcessKeyboardUpInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {}
@@ -25,8 +25,10 @@ public:
 	virtual void ProcessCHARInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	void ReadMapData();
+
 private:
 
+	CGameObject* m_Player = nullptr;
 	MAP_TILE_DATA m_TileDatas[WORLD_HEIGHT][WORLD_WIDTH];
 
 	// 맵 타일을 그리기 위한 위치

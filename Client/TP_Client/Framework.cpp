@@ -58,8 +58,7 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 void CFramework::BuildScene()
 { 
 #ifdef TEST_MODE
-	//ChangeScene<CTestScene>();
-	ChangeScene<CTitleScene>();
+	ChangeScene<CTestScene>(); 
 #else
 	ChangeScene<CTitleScene>();
 #endif 
@@ -151,6 +150,9 @@ LRESULT CFramework::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 	switch (message)
 	{
 	case WM_CREATE: {
+#ifdef TEST_MODE
+		break;
+#endif
 		int caretYPos = 300;
 		/*if (nullptr != m_CurScene) {
 			m_CurScene->ProcessWindowInput(hWnd, message, wParam, lParam);
