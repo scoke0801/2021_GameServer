@@ -48,9 +48,9 @@ LRESULT CTitleScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, 
 	switch (message)
 	{
 	case WM_CREATE:
-		CreateCaret(hWnd, NULL, 5, 15);
-		ShowCaret(hWnd);
-		SetCaretPos(360 + 7.8 * m_ServerIp.length(), m_CaretYPos);
+		//CreateCaret(hWnd, NULL, 5, 15);
+		//ShowCaret(hWnd);
+		//SetCaretPos(360 + 7.8 * m_ServerIp.length(), m_CaretYPos);
 		return 0;
 	case WM_CHAR:
 		switch (wParam)

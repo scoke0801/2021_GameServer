@@ -41,8 +41,6 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 	m_hWnd = hWnd;
 	m_hInst = hInst;
 
-	BuildScene();
-
 	::GetClientRect(hWnd, &m_rtClient);
 	  
 	//LoadString(m_hInst, IDS_APP_TITLE, m_captionTitle, TITLE_LENGTH);
@@ -53,13 +51,15 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 	m_titleLength = lstrlen(m_captionTitle);
 	SetWindowText(m_hWnd, m_captionTitle);
 
+	BuildScene();
 	InitBuffers();
 }
 
 void CFramework::BuildScene()
 { 
 #ifdef TEST_MODE
-	ChangeScene<CTestScene>(); 
+	//ChangeScene<CTestScene>();
+	ChangeScene<CTitleScene>();
 #else
 	ChangeScene<CTitleScene>();
 #endif 
@@ -150,10 +150,15 @@ LRESULT CFramework::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 { 
 	switch (message)
 	{
-	case WM_CREATE: 
-		if (nullptr != m_CurScene) {
+	case WM_CREATE: {
+		int caretYPos = 300;
+		/*if (nullptr != m_CurScene) {
 			m_CurScene->ProcessWindowInput(hWnd, message, wParam, lParam);
-		}
+		}*/
+		CreateCaret(hWnd, NULL, 5, 15);
+		ShowCaret(hWnd);
+		SetCaretPos(360 + 7.8 * m_ServerIp.length(), caretYPos);
+	}
 		break;
 	case WM_IME_COMPOSITION: 
 	case WM_CHAR: 

@@ -11,6 +11,7 @@ CScene::CScene()
 	m_isServerConnected = CFramework::GetInstance().IsServerConnected();
 	m_ClientId = CFramework::GetInstance().GetClientId();
 	m_ServerIp = CFramework::GetInstance().GetServerIP();
+	m_rtClient = CFramework::GetInstance().GetClientSize();
 }
 
 CScene::~CScene()

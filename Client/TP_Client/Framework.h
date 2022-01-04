@@ -58,7 +58,8 @@ public:
 	string GetServerIP() const { return m_ServerIp; }
 	bool IsServerConnected() const { return m_isServerConnected; }
 	short GetClientId() const { return m_ClientId; }
-	  
+	RECT GetClientSize() const { return m_rtClient; }
+
 private:
 	// WM_SOCKET 메시지 받은 경우 이를 처리
 	void ProcessCommunication(WPARAM wParam, LPARAM lParam);

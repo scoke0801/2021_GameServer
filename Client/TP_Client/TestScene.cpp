@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TestScene.h"
 
-CTestScene::CTestScene()
+CTestScene::CTestScene() : CScene()
 {
 	m_Type = SceneType::TitleScene;
 	m_TileImage.Load(L"Resources/GameTileX.png");
