@@ -22,13 +22,7 @@ public:
 protected:
 	// 투명하게 그릴 때, 이미지를 넘겨주고 직접 그리게 
 	void DrawTransparent(HDC hdc, int startX, int startY, int sizeX, int sizeY, BYTE alphaValue, const CImage& targetImage);
-
-
-
-	// 패킷 전송
-	bool SendPacket(void* p);
-	bool SendPacket(SOCKET& sock, char* packet, int packetSize, int& retVal);
-
+	 
 public:
 	virtual void Update(float timeElapsed) = 0;
 	virtual void Draw(HDC hdc) = 0;
@@ -58,15 +52,15 @@ private:
 	CFramework* m_pFramework;
 
 protected:
-	RECT m_rtClient;
+	RECT	m_rtClient;
 	SceneType m_Type;
-	void* m_Context;
+	void*	m_Context;
 
 	bool	m_isServerConnected = false;
 	short	m_ClientId = -1;
 	string	m_ServerIp = "127.0.0.1";
 
-	short m_CaretYPos = 300;
+	short	m_CaretYPos = 300;
 };
 
 

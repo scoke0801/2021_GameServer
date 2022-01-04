@@ -205,5 +205,5 @@ void CTitleScene::SendLoginPacket()
 	packet.type = CS_LOGIN;
 	strcpy_s(packet.player_id, m_PlayerName.c_str());
 
-	SendPacket(&packet);
+	CFramework::GetInstance().SendPacket(&packet);
 }

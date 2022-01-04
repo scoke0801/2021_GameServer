@@ -496,7 +496,7 @@ void CGameScene::SendMovePacket(DIRECTION dir)
 	packet.size = sizeof(packet);
 	packet.type = CS_MOVE;
 	packet.direction = dir;
-	SendPacket(&packet);
+	CFramework::GetInstance().SendPacket(&packet);
 }
 void CGameScene::SendChatPacket()
 {
@@ -508,7 +508,7 @@ void CGameScene::SendChatPacket()
 	packet.size = sizeof(packet);
 	packet.type = CS_CHAT;
 	strcpy_s(packet.message, m_ChatData.c_str());
-	SendPacket(&packet);
+	CFramework::GetInstance().SendPacket(&packet);
 }
 void CGameScene::SendAttackPacket()
 {
@@ -516,7 +516,7 @@ void CGameScene::SendAttackPacket()
 	packet.size = sizeof(packet);
 	packet.type = CS_ATTACK;
 
-	SendPacket(&packet);
+	CFramework::GetInstance().SendPacket(&packet);
 }
 void CGameScene::SendUseItem(int idx)
 {
@@ -529,5 +529,5 @@ void CGameScene::SendUseItem(int idx)
 	packet.size = sizeof(packet);
 	packet.type = CS_USE_ITEM;
 	packet.itemIndex = idx;
-	SendPacket(&packet);
+	CFramework::GetInstance().SendPacket(&packet);
 }

@@ -24,6 +24,15 @@ public:
 	virtual void ProcessKeyboardDownInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {}
 	virtual void ProcessCHARInput(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
+	void ReadMapData();
 private:
+
+	MAP_TILE_DATA m_TileDatas[WORLD_HEIGHT][WORLD_WIDTH];
+
+	// 맵 타일을 그리기 위한 위치
+	short m_LeftX = 0;
+	short m_TopY = 0;
+
+	CImage m_TileImage;
 };
 

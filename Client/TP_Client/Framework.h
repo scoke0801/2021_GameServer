@@ -50,6 +50,10 @@ public:
 	// 입력받은 IP주소로 서버와 연결
 	bool ConnectToServer();
 
+	// 패킷 전송
+	bool SendPacket(void* p);
+	bool SendPacket(SOCKET& sock, char* packet, int packetSize, int& retVal);
+
 public:
 	string GetServerIP() const { return m_ServerIp; }
 	bool IsServerConnected() const { return m_isServerConnected; }
@@ -65,11 +69,6 @@ private:
 
 	// 서버로부터 받은 데이터를 패킷단위로 처리
 	void ProcessPacket(unsigned char* p_buf);
-
-	// 패킷 전송
-	bool SendPacket(void* p);
-	bool SendPacket(SOCKET& sock, char* packet, int packetSize, int& retVal);
-
 
 public:
 	template <typename SceneName>

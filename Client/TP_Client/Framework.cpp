@@ -41,16 +41,18 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 	m_hWnd = hWnd;
 	m_hInst = hInst;
 
+	BuildScene();
+
 	::GetClientRect(hWnd, &m_rtClient);
 	  
-	LoadString(m_hInst, IDS_APP_TITLE, m_captionTitle, TITLE_LENGTH);
+	//LoadString(m_hInst, IDS_APP_TITLE, m_captionTitle, TITLE_LENGTH);
+	lstrcpy(m_captionTitle, TEXT("2021GameServer_MMORPG"));
 #if defined(SHOW_CAPTIONFPS)
 	lstrcat(m_captionTitle, TEXT(" ("));
 #endif
-	m_titleLength = lstrlen(TEXT("2021GameServer_MMORPG")); 
-	SetWindowText(m_hWnd, TEXT("2021GameServer_MMORPG"));
+	m_titleLength = lstrlen(m_captionTitle);
+	SetWindowText(m_hWnd, m_captionTitle);
 
-	BuildScene();
 	InitBuffers();
 }
 
@@ -139,7 +141,7 @@ void CFramework::update(float timeElapsed)
 
 void CFramework::draw(HDC hdc)
 { 
-	m_CurScene->Draw(hdc);
+	m_CurScene->Draw(m_hdc);
 
 	BitBlt(hdc, 0, 0, m_rtClient.right, m_rtClient.bottom,
 		m_hdc, 0,0, SRCCOPY);
@@ -149,11 +151,14 @@ LRESULT CFramework::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 	switch (message)
 	{
 	case WM_CREATE: 
+		if (nullptr != m_CurScene) {
+			m_CurScene->ProcessWindowInput(hWnd, message, wParam, lParam);
+		}
+		break;
 	case WM_IME_COMPOSITION: 
 	case WM_CHAR: 
 	case WM_KEYDOWN: 
 	case WM_LBUTTONDOWN:
-	
 		m_CurScene->ProcessWindowInput(hWnd, message, wParam, lParam);
 	break;
 	
