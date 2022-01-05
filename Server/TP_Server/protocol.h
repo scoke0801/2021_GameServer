@@ -5,7 +5,7 @@ enum ITEM_TYPE { I_NOT, I_POTION, I_POWERUP, I_BOMB, I_LEVELUP };
 constexpr int POTION_HP_HEAL_AMOUNT = 25;
  
 enum DIRECTION { D_N, D_S, D_W, D_E, D_NO };
-constexpr int MAX_USER = 210000;                // 서버내의 최대 객체 개수,  객체 ID의 최대 값
+constexpr int MAX_USER = 21000;                // 서버내의 최대 객체 개수,  객체 ID의 최대 값
 constexpr int MAX_STR_LEN = 50;
 constexpr int MAX_ID_LEN = 20;
 

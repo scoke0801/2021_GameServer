@@ -15,16 +15,25 @@ CGameObject::CGameObject()
 {
 	if (false == m_ImageLoad) { 
 		m_Image.Load(L"Resources/Units.png");
-		m_PlayerImage.Load(L"Resources/playerAll.png");
-		m_MonAgroRoamingImage.Load(L"Resources/MonAgroRoaming.png");
-		m_MonPeaceRoamingImage.Load(L"Resources/MonPeaceRoaming.png");
+		
+		//m_PlayerImage.Load(L"Resources/playerAll.png"); 
+		m_PlayerImage.Load(L"Resources/zelda.png");
+		 
+		//m_MonAgroRoamingImage.Load(L"Resources/MonAgroRoaming.png");
+
+		//m_MonPeaceRoamingImage.Load(L"Resources/MonPeaceRoaming.png");
+
+		m_MonAgroRoamingImage.Load(L"Resources/skeleton.png"); 
+		m_MonPeaceRoamingImage.Load(L"Resources/thief.png");
+
+
 		m_MonAgroFixedImage.Load(L"Resources/MonAgroFixed.png"); 
 		m_MonPeaceFixedImage.Load(L"Resources/MonPeaceFixed.png");
+
+
 		m_ItemImage.Load(L"Resources/Items.png"); 
 		m_Seller.Load(L"Resources/seller.png");
 		m_ImageLoad = true;
-
-
 	}
 	m_TileIndex = {0,0};
 	m_Position = { MAP_TILE_SIZE.x * m_TileIndex.x,  MAP_TILE_SIZE.y * m_TileIndex.y }; 
@@ -42,28 +51,33 @@ CGameObject::~CGameObject()
 }
 
 void CGameObject::Update(float elapsedTime)
-{
+{ 
 	switch (m_Type)
 	{
 	case ObjectType::None:
 		break;
 	case ObjectType::Player:
-		m_AnimationIndex.x += elapsedTime * 0.19f;
+	case ObjectType::Mon_Peace_Roaming:
+	case ObjectType::Mon_Agro_Roaming:
+		m_AnimationIndex.x += elapsedTime * m_ImageUpdateTime;
 		
-		if (m_AnimationIndex.x >= 10) {
-			m_AnimationIndex.x = 0;
-		}
+		if (m_AnimationIndex.x >= m_ImagePosition[(int)m_State]) {
+			if (STATE::WALK == m_State) {
+				m_AnimationIndex.x = 0;
+			}
+			else {
+				m_State = STATE::WALK;
+				m_AnimationIndex.x = 0;
+				//m_AnimationIndex.x = m_ImagePosition[0];
+			}
+		} 
 		break;
-	case ObjectType::Mon_Peace_Roaming: 
-		break;
-	case ObjectType::Mon_Peace_Fixed: 
-		break;
-	case ObjectType::Mon_Agro_Roaming: 
+	case ObjectType::Mon_Peace_Fixed:  
 		break;
 	case ObjectType::Mon_Agro_Fixed: 
 		break;
 	case ObjectType::Seller:
-		m_AnimationIndex.x += elapsedTime ;
+		m_AnimationIndex.x += elapsedTime *0.0625f ;
 
 		if (m_AnimationIndex.x >= 16) {
 			m_AnimationIndex.x = 0;
@@ -135,6 +149,52 @@ void CGameObject::MoveTo(Vector2i toTile)
 	m_Position = { MAP_TILE_SIZE.x * toTile.x, MAP_TILE_SIZE.y * toTile.y }; 
 }
 
+void CGameObject::SetType(ObjectType type)
+{
+	m_Type = type;
+	switch (m_Type)
+	{
+	case ObjectType::None:
+		break;
+	case ObjectType::Player: 
+		m_ImagePosition[0] = 6;
+		m_ImagePosition[1] = 9;
+		break;
+	case ObjectType::Mon_Peace_Roaming:	// thief
+		m_ImagePosition[0] = 4;
+		m_ImagePosition[1] = 7;
+		break;
+	case ObjectType::Mon_Peace_Fixed:  
+		break;
+	case ObjectType::Mon_Agro_Roaming: // skeleton
+		m_ImagePosition[0] = 3;
+		m_ImagePosition[1] = 8;
+		break;
+	case ObjectType::Mon_Agro_Fixed: 
+		break;
+	case ObjectType::Seller: 
+		break;
+	default: 
+		break;
+	}
+	ChangeAnimationUpdateTime();
+}
+
+void CGameObject::SetState(STATE state)
+{ 
+	m_State = state;  
+	ChangeAnimationUpdateTime();
+}
+ 
+void CGameObject::ChangeAnimationUpdateTime()
+{
+	if (STATE::WALK == m_State) {
+		m_ImageUpdateTime = (0.6f) / (m_ImagePosition[0]);
+	}
+	else {
+		m_ImageUpdateTime = (0.7f) / (m_ImagePosition[1] - m_ImagePosition[0]);
+	}
+}
 ITEM_TYPE CGameObject::UseItem(int idx)
 {
 	auto itemType = m_Items[idx];
@@ -144,13 +204,13 @@ ITEM_TYPE CGameObject::UseItem(int idx)
 }
 
 void CGameObject::DrawPlayer(HDC hdc, int view_x, int view_y)
-{ 
+{  
 	m_PlayerImage.TransparentBlt(hdc,
 		m_Position.x - view_x, m_Position.y - view_y,
 		MAP_TILE_SIZE.x, MAP_TILE_SIZE.y,
-		(int)m_AnimationIndex.x * m_PlayerImage.GetWidth() / 10.0f, 
+		(int)m_AnimationIndex.x * m_PlayerImage.GetWidth() / 9.0f, 
 		(int)m_Direction * m_PlayerImage.GetHeight() / 4.0f,
-		m_PlayerImage.GetWidth() / 10.0f,
+		m_PlayerImage.GetWidth() / 9.0f,
 		m_PlayerImage.GetHeight() / 4.0f,
 		RGB(255, 0, 255)); 
 }
@@ -160,10 +220,9 @@ void CGameObject::DrawMonPeaceRoaming(HDC hdc, int view_x, int view_y)
 	m_MonPeaceRoamingImage.TransparentBlt(hdc,
 		m_Position.x - view_x, m_Position.y - view_y,
 		MAP_TILE_SIZE.x, MAP_TILE_SIZE.y,
-		//(int)m_AnimationIndex.x * m_PlayerImage.GetWidth() / 10.0f,
-		0,
+		(int)m_AnimationIndex.x * m_MonPeaceRoamingImage.GetWidth() / 7.0f,
 		(int)m_Direction * m_MonPeaceRoamingImage.GetHeight() / 4.0f,
-		m_MonPeaceRoamingImage.GetWidth(),
+		m_MonPeaceRoamingImage.GetWidth() / 7.0f,
 		m_MonPeaceRoamingImage.GetHeight() / 4.0f,
 		RGB(255, 0, 255));
 }
@@ -182,13 +241,15 @@ void CGameObject::DrawMonPeaceFixed(HDC hdc, int view_x, int view_y)
 }
 void CGameObject::DrawMonAgroRoaming(HDC hdc, int view_x, int view_y)
 { 
+	float x_correction = MAP_TILE_SIZE.x * 0.2;
+	float y_correction = MAP_TILE_SIZE.y * 0.2;
+
 	m_MonAgroRoamingImage.TransparentBlt(hdc,
-		m_Position.x - view_x, m_Position.y - view_y,
-		MAP_TILE_SIZE.x, MAP_TILE_SIZE.y,
-		//(int)m_AnimationIndex.x * m_PlayerImage.GetWidth() / 10.0f,
-		0,
+		m_Position.x - view_x- x_correction, m_Position.y - view_y- y_correction,
+		MAP_TILE_SIZE.x * 1.3, MAP_TILE_SIZE.y*1.3,
+		(int)m_AnimationIndex.x * m_MonAgroRoamingImage.GetWidth() / 8.0f,
 		(int)m_Direction * m_MonAgroRoamingImage.GetHeight() / 4.0f,
-		m_MonAgroRoamingImage.GetWidth(),
+		m_MonAgroRoamingImage.GetWidth() / 8.0f,
 		m_MonAgroRoamingImage.GetHeight() / 4.0f,
 		RGB(255, 0, 255)); 
 }
@@ -228,9 +289,9 @@ void CGameObject::DrawExtraInfos(HDC hdc, int view_x, int view_y,
 	}
 }
 
+
 void CGameObject::DrawItems(HDC hdc)
 {
-	
 	for (int i = 0; i < m_ItemCount; ++i) {
 		int xPos = m_Items[i] - 1; 
 		m_ItemImage.TransparentBlt(hdc, WINDOW_WIDTH - 256 + 15 + i * (60), 7, 48, 48,

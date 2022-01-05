@@ -8,6 +8,8 @@ CTestScene::CTestScene() : CScene()
 
 	m_Player = new CGameObject();	
 	m_Player->SetType(ObjectType::Player);
+	//m_Player->SetType(ObjectType::Mon_Peace_Roaming);
+	//m_Player->SetType(ObjectType::Mon_Agro_Roaming);
 	m_Player->Show();
 	m_Player->MoveTo({ 10,10 });
 }
@@ -35,9 +37,7 @@ void CTestScene::Draw(HDC hdc)
 				j * TILE_WIDTH, i * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH,
 				(int)m_TileDatas[m_TopY + i][m_LeftX + j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH);
 		}
-	}
-
-
+	} 
 	m_Player->Draw(hdc,
 		m_LeftX * TILE_WIDTH,
 		m_TopY * TILE_WIDTH);
@@ -76,6 +76,10 @@ LRESULT CTestScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 		case VK_DOWN:
 			m_Player->MoveTo({ tileIndex.x, tileIndex.y+1 });
 			m_Player->SetDirection(DIRECTION::D_S);
+			break;
+		case VK_a:
+		case VK_A:
+			m_Player->SetState(STATE::ATTACK);
 			break;
 		}
 
