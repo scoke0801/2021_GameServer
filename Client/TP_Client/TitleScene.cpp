@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TitleScene.h"
-
+#include "GameScene.h"
  
 CTitleScene::CTitleScene() : CScene()
 { 
@@ -146,42 +146,28 @@ LRESULT CTitleScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, 
 
 void CTitleScene::ProcessPacket(unsigned char* p_buf)
 {
-	//char buf[10000];
-	/////unsigned char p_size = reinterpret_cast<unsigned char*>(p_buf)[0];
-	//unsigned char p_type = reinterpret_cast<unsigned char*>(p_buf)[1];
-	//switch (p_type)
-	//{
-	//case SC_LOGIN_OK:
-	//{
-	//	sc_packet_login_ok* packet = reinterpret_cast<sc_packet_login_ok*>(p_buf);
+	char buf[10000];
+	///unsigned char p_size = reinterpret_cast<unsigned char*>(p_buf)[0];
+	unsigned char p_type = reinterpret_cast<unsigned char*>(p_buf)[1];
+	switch (p_type)
+	{
+	case SC_LOGIN_OK:
+	{
+		sc_packet_login_ok* packet = reinterpret_cast<sc_packet_login_ok*>(p_buf);
 
-	//	//cout << "LoginOk - x : " << packet->x << " y : " << packet->y << "\n";
-	//	m_ClientId = packet->id;
-	//	m_Player = &m_Objects[m_ClientId];
-	//	m_Player->SetHP(packet->HP);
-	//	m_Player->SetLevel(packet->LEVEL);
-	//	m_Player->SetExp(packet->EXP);
-	//	m_Player->SetName(m_PlayerName.c_str());
-	//	m_Player->SetGold(packet->GOLD);
-	//	m_Player->MoveTo({ packet->x, packet->y });
-	//	m_Player->SetType(ObjectType::Player);
-
-	//	for (int i = 0; i < packet->itemCount; ++i) {
-	//		m_Player->AddItem(packet->items[i]);
-	//	}
-	//	//avatar.SetName(packet->name);
-	//	m_LeftX = packet->x - SCREEN_WIDTH * 0.5f;
-	//	m_TopY = packet->y - SCREEN_HEIGHT * 0.5f;
-	//	m_Player->Show();
-
-	//	m_ToDrawObjects.emplace_back(m_Player);
-	//	break;
-	//}
-	//case SC_LOGIN_FAIL:
-	//	MessageBox(m_hWnd, L"이미 등록된 ID입니다!", L"로그인 실패!", MB_OK);
-	//	exit(1);
-	//	break;
-	//}
+		//cout << "LoginOk - x : " << packet->x << " y : " << packet->y << "\n";
+		DATA_TITLE_FROM_TO_GAMESCENE data;
+		data.packet = *packet;
+		data.player_name = m_PlayerName;
+		CFramework::GetInstance().ChangeScene<CGameScene>((void*)&data);
+		 
+		break;
+	}
+	case SC_LOGIN_FAIL:
+		//MessageBox(m_hWnd, L"이미 등록된 ID입니다!", L"로그인 실패!", MB_OK);
+		exit(1);
+		break;
+	}
 }
 
 void CTitleScene::Communicate(SOCKET& sock)

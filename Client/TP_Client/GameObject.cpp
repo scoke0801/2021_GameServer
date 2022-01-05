@@ -15,13 +15,8 @@ CGameObject::CGameObject()
 {
 	if (false == m_ImageLoad) { 
 		m_Image.Load(L"Resources/Units.png");
-		
-		//m_PlayerImage.Load(L"Resources/playerAll.png"); 
-		m_PlayerImage.Load(L"Resources/zelda.png");
 		 
-		//m_MonAgroRoamingImage.Load(L"Resources/MonAgroRoaming.png");
-
-		//m_MonPeaceRoamingImage.Load(L"Resources/MonPeaceRoaming.png");
+		m_PlayerImage.Load(L"Resources/zelda.png"); 
 
 		m_MonAgroRoamingImage.Load(L"Resources/skeleton.png"); 
 		m_MonPeaceRoamingImage.Load(L"Resources/thief.png");

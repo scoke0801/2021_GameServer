@@ -33,6 +33,32 @@ CGameScene::~CGameScene()
 {
 }
 
+void CGameScene::SendDataToNextScene(void* pContext)
+{
+	DATA_TITLE_FROM_TO_GAMESCENE data = *(DATA_TITLE_FROM_TO_GAMESCENE*)pContext;
+	sc_packet_login_ok packet = data.packet; 
+
+	m_ClientId = packet.id;
+	m_Player = &m_Objects[m_ClientId];
+	m_Player->SetHP(packet.HP);
+	m_Player->SetLevel(packet.LEVEL);
+	m_Player->SetExp(packet.EXP);
+	m_Player->SetName(data.player_name.c_str());
+	m_Player->SetGold(packet.GOLD);
+	m_Player->MoveTo({ packet.x, packet.y });
+	m_Player->SetType(ObjectType::Player);
+
+	for (int i = 0; i < packet.itemCount; ++i) {
+		m_Player->AddItem(packet.items[i]);
+	}
+	//avatar.SetName(packet->name);
+	m_LeftX = packet.x - SCREEN_WIDTH * 0.5f;
+	m_TopY = packet.y - SCREEN_HEIGHT * 0.5f;
+	m_Player->Show();
+
+	m_ToDrawObjects.emplace_back(m_Player);
+}
+
 void CGameScene::Update(float timeElapsed)
 {
 	for (auto& pObjects : m_ToDrawObjects)

@@ -7,7 +7,7 @@ public:
 	CGameScene();
 	~CGameScene();
 
-	virtual void SendDataToNextScene(void* pContext) {}
+	virtual void SendDataToNextScene(void* pContext);
 
 public:
 	virtual void Update(float timeElapsed);

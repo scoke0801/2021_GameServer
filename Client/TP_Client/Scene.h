@@ -9,6 +9,11 @@ enum class SceneType
 	NullScene
 };
 
+struct DATA_TITLE_FROM_TO_GAMESCENE {
+	sc_packet_login_ok packet;
+	string player_name;
+};
+
 class CScene
 { 
 public:

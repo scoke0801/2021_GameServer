@@ -58,7 +58,8 @@ void CFramework::init(HWND hWnd, HINSTANCE hInst)
 void CFramework::BuildScene()
 { 
 #ifdef TEST_MODE
-	ChangeScene<CTestScene>(); 
+	//ChangeScene<CTestScene>();
+	ChangeScene<CTitleScene>();
 #else
 	ChangeScene<CTitleScene>();
 #endif 
