@@ -386,6 +386,43 @@ LRESULT CGameScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 				m_IsSellerClicked = false;
 			}
 		}
+		else {
+			cout << " mx - " << mx << " my - " << my << "\n";
+			if (mx > m_rtClient.right * 0.15f && mx < m_rtClient.right * 0.85f)
+			{
+				int height = m_rtClient.bottom * 0.15f;
+				if (my > m_rtClient.bottom * 0.15f && my < m_rtClient.bottom * 0.25f) {
+					m_SelectedItem = ITEM_TYPE::I_POTION;
+				}
+				else if (my > m_rtClient.bottom * 0.26f && my < m_rtClient.bottom * 0.35f) {
+					m_SelectedItem = ITEM_TYPE::I_POWERUP;
+				}
+				else if (my > m_rtClient.bottom * 0.36f && my < m_rtClient.bottom * 0.45f) {
+					m_SelectedItem = ITEM_TYPE::I_BOMB;
+				}
+				else if (my > m_rtClient.bottom * 0.46f && my < m_rtClient.bottom * 0.55f) {
+					m_SelectedItem = ITEM_TYPE::I_LEVELUP;
+				}
+			}
+			if (my > m_rtClient.bottom * 0.56f && my < m_rtClient.bottom * 0.7f)
+			{
+				if (mx > m_rtClient.right * 0.20f && mx < m_rtClient.right * 0.42f) {
+					// 구매
+					if (ITEM_TYPE::I_NOT != m_SelectedItem) {
+						cs_packet_buy_item packet;
+						packet.size = sizeof(packet);
+						packet.type = CS_BUY_ITEM;
+						packet.itemType = m_SelectedItem;
+						CFramework::GetInstance().SendPacket(&packet);
+					}
+				}
+				else if (mx > m_rtClient.right * 0.58f && mx < m_rtClient.right * 0.75f) {
+					// 취소
+					m_IsSellerClicked = false;
+					m_SelectedItem = ITEM_TYPE::I_NOT;
+				}
+			}
+		}
 		cout << boolalpha << m_IsOnChatting << " mx - " << mx << " my - " << my << "\n";
 	}
 
@@ -465,6 +502,25 @@ void CGameScene::ProcessPacket(unsigned char* p_buf)
 			STATE state = m_Objects[packet->attacker].GetState();
 			if (state != STATE::ATTACK) {
 				m_Objects[packet->attacker].SetState(STATE::ATTACK);
+			}
+			if (packet->attacker == packet->id) {
+				break;
+			}
+
+			DIRECTION dir;
+			Vector2i my_pos = m_Objects[packet->id].GetTileIndex();
+			Vector2i attacker_pos = m_Objects[packet->attacker].GetTileIndex();
+			if (my_pos.x < attacker_pos.x) {
+				m_Objects[packet->attacker].SetDirection(DIRECTION::D_W);
+			}
+			else if (my_pos.x > attacker_pos.x) {
+				m_Objects[packet->attacker].SetDirection(DIRECTION::D_E);
+			}
+			else if (my_pos.y < attacker_pos.y) {
+				m_Objects[packet->attacker].SetDirection(DIRECTION::D_N);
+			}
+			else if (my_pos.y > attacker_pos.y) {
+				m_Objects[packet->attacker].SetDirection(DIRECTION::D_S);
 			}
 		}
 	}
