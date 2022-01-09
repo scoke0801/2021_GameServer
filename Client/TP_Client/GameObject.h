@@ -41,6 +41,7 @@ public:
 	int GetExp() const { return m_Exp; }
 	int GetGold() const { return m_Gold; }
 	int GetItemCount() const { return m_ItemCount; }
+	STATE GetState() const { return m_State; }
 
 	ObjectType GetType() const { return m_Type; }
 	DIRECTION GetDirection() const { return m_Direction; }

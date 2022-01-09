@@ -76,7 +76,7 @@ constexpr auto SCREEN_HEIGHT = 20;
 #define SC_STAT_CHANGE		5		// OBJECT의 정보가 변경되었음을 통보
 #define SC_REMOVE_OBJECT	6		// OBJECT가 시야에서 사라 졌음
 #define SC_ADD_OBJECT		7		// 새로운 OBJECT가 시야에 들어 왔음
-#define SC_ADD_ITEM			8	    // 아이템을 먹은 경우.
+#define SC_ADD_ITEM			8	    // 아이템을 먹은 경우. 
 
 #pragma pack(push ,1)
 
@@ -115,11 +115,11 @@ struct sc_packet_chat {
 struct sc_packet_stat_change {
 	unsigned char size;
 	char	type;
-	int	id;
-	int	HP, LEVEL, EXP, GOLD;  
+	int	id, attacker;
+	int	HP, LEVEL, EXP, GOLD;   
+	bool isAttackState;
 };
-
-
+  
 struct sc_packet_remove_object {
 	unsigned char size;
 	char type;

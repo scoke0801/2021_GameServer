@@ -27,6 +27,8 @@ CGameScene::CGameScene() : CScene()
 	cout << "idx : " << idx;
 
 	m_CaretYPos = m_rtClient.bottom - 20;
+
+	ReadMapData();
 }
 
 CGameScene::~CGameScene()
@@ -260,6 +262,7 @@ LRESULT CGameScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 		ImmReleaseContext(hWnd, m_hIMC);	// IME 핸들 반환!!
 		return 0;
 	case WM_CHAR:
+	{
 		switch (wParam)
 		{
 		case VK_a:
@@ -330,62 +333,65 @@ LRESULT CGameScene::ProcessWindowInput(HWND hWnd, UINT message, WPARAM wParam, L
 			m_ChatData += static_cast<char>(wParam);
 			//SetCaretPos(m_rtClient.right * 0.1f + 16 + 7.8 * m_ChatData.length(), m_CaretYPos);
 			return 0;
-
-		case WM_KEYDOWN:
-			if (m_isServerConnected) {
-				DIRECTION dir;
-				switch (wParam)
-				{
-				case VK_LEFT:
-					dir = DIRECTION::D_W;
-					break;
-				case VK_RIGHT:
-					dir = DIRECTION::D_E;
-					break;
-				case VK_UP:
-					dir = DIRECTION::D_N;
-					break;
-				case VK_DOWN:
-					dir = DIRECTION::D_S;
-					break;
-				default:
-					dir = DIRECTION::D_NO;
-				}
-				if (dir != DIRECTION::D_NO) {
-					SendMovePacket(dir);
-				}
-			}
-			return 0;
-		case WM_LBUTTONDOWN:
-		{
-			int mx = LOWORD(lParam);
-			int my = HIWORD(lParam);
-
-
-			m_IsOnChatting = false;
-			if (mx >= m_rtClient.right * 0.1f && mx <= m_rtClient.right * 0.9f) {
-				if (my >= m_rtClient.bottom * 0.75f && my <= m_rtClient.bottom) {
-					m_IsOnChatting = true;
-				}
-			}
-			int m_tile_x = mx / TILE_WIDTH;
-			int m_tile_y = my / TILE_WIDTH;
-
-			if (false == m_IsSellerClicked) {
-				if (((m_LeftX + m_tile_x) % 100) == 0 &&
-					((m_TopY + m_tile_y) % 100) == 1) {
-					cout << "상인 선택!!!!\n";
-					m_IsSellerClicked = true;
-				}
-				else {
-					m_IsSellerClicked = false;
-				}
-			}
-			cout << boolalpha << m_IsOnChatting << " mx - " << mx << " my - " << my << "\n";
-		}
-		return 0;
 		}
 	}
+	return 0;
+	case WM_KEYDOWN:
+		if (m_isServerConnected) {
+			DIRECTION dir;
+			switch (wParam)
+			{
+			case VK_LEFT:
+				dir = DIRECTION::D_W;
+				break;
+			case VK_RIGHT:
+				dir = DIRECTION::D_E;
+				break;
+			case VK_UP:
+				dir = DIRECTION::D_N;
+				break;
+			case VK_DOWN:
+				dir = DIRECTION::D_S;
+				break;
+			default:
+				dir = DIRECTION::D_NO;
+			}
+			if (dir != DIRECTION::D_NO) {
+				SendMovePacket(dir);
+			}
+		}
+		return 0;
+	case WM_LBUTTONDOWN:
+	{
+		int mx = LOWORD(lParam);
+		int my = HIWORD(lParam);
+
+
+		m_IsOnChatting = false;
+		if (mx >= m_rtClient.right * 0.1f && mx <= m_rtClient.right * 0.9f) {
+			if (my >= m_rtClient.bottom * 0.75f && my <= m_rtClient.bottom) {
+				m_IsOnChatting = true;
+			}
+		}
+		int m_tile_x = mx / TILE_WIDTH;
+		int m_tile_y = my / TILE_WIDTH;
+
+		if (false == m_IsSellerClicked) {
+			if (((m_LeftX + m_tile_x) % 100) == 0 &&
+				((m_TopY + m_tile_y) % 100) == 1) {
+				cout << "상인 선택!!!!\n";
+				m_IsSellerClicked = true;
+			}
+			else {
+				m_IsSellerClicked = false;
+			}
+		}
+		cout << boolalpha << m_IsOnChatting << " mx - " << mx << " my - " << my << "\n";
+	}
+
+	return 0;
+	}
+
 	return 0;
 }
 
@@ -454,6 +460,13 @@ void CGameScene::ProcessPacket(unsigned char* p_buf)
 		m_Objects[packet->id].SetLevel(packet->LEVEL);
 		m_Objects[packet->id].SetExp(packet->EXP);
 		m_Objects[packet->id].SetGold(packet->GOLD);
+		 
+		if (packet->isAttackState) {
+			STATE state = m_Objects[packet->attacker].GetState();
+			if (state != STATE::ATTACK) {
+				m_Objects[packet->attacker].SetState(STATE::ATTACK);
+			}
+		}
 	}
 	break;
 	case SC_REMOVE_OBJECT:

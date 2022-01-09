@@ -313,8 +313,10 @@ void SendStatChangePacket(int id)
 	packet.id = id;
 	packet.GOLD = objects[id]->GOLD;
 	packet.LEVEL = objects[id]->LEVEL;
-	packet.size = sizeof(packet);
-	packet.type = SC_STAT_CHANGE;
+	packet.size = sizeof(packet); 
+	packet.attacker = id;
+	packet.isAttackState = false;
+	packet.type = SC_STAT_CHANGE; 
 	SendPacket(id, &packet);
 }
 
@@ -340,14 +342,18 @@ void attacked(int attackerId, int victimId, int power)
 		packet.LEVEL = objects[victimId]->LEVEL;
 		packet.HP = objects[victimId]->HP;
 		packet.size = sizeof(packet);
-		packet.GOLD = objects[victimId]->GOLD;
-		packet.type = SC_STAT_CHANGE;
+		packet.GOLD = objects[victimId]->GOLD; 
+		packet.attacker = attackerId;
+		packet.isAttackState = true;
+		packet.type = SC_STAT_CHANGE; 	
+		  
 		// 바뀐 정보를
 		// 쳐다보고 있는 모든 플레이어들에게 전송해야함  
 		
 		if (false == IsNpc(attackerId)) {
 			string mess = string(objects[attackerId]->m_name) + "가 " + string(objects[victimId]->m_name) + "에게 " + to_string(power)
-				+ "의 피해를 입혔습니다"; 
+				+ "의 피해를 입혔습니다";  
+
 			SendChatPacket(attackerId, 0, mess.c_str());
 		}
 		if (false == IsNpc(victimId)) {
@@ -813,6 +819,18 @@ void ProcessPacket(int p_id, unsigned char* p_buf)
 		//ReservePlayerEvent(p_id, OP_TYPE::OP_ATTACK, 1000);
 		DoAttack(p_id, objects[p_id]->power);
 		cout << "CS_ATTACK\n";
+		 
+		sc_packet_stat_change stat_change_packet;
+		stat_change_packet.id = p_id;
+		stat_change_packet.EXP = objects[p_id]->EXP;
+		stat_change_packet.LEVEL = objects[p_id]->LEVEL;
+		stat_change_packet.HP = objects[p_id]->HP;
+		stat_change_packet.size = sizeof(stat_change_packet);
+		stat_change_packet.GOLD = objects[p_id]->GOLD;
+		stat_change_packet.attacker = p_id;
+		stat_change_packet.isAttackState = true;
+		stat_change_packet.type = SC_STAT_CHANGE; 
+		SendStatPacketToViewObjects(p_id, &stat_change_packet);
 		break;
 	}
 	case CS_USE_ITEM:
@@ -1137,6 +1155,7 @@ void MainWorkerFunc(HANDLE h_iocp, SOCKET l_socket)
 			//cout << "공격이벤트 발생 - id : " << key << "\n";
 			if (false == objects[key]->isOnRunaway) {
 				DoAttack(key, objects[key]->power);
+				 
 			}
 			delete ex_over;
 			break;
