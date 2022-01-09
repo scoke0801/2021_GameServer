@@ -7,8 +7,16 @@ CTitleScene::CTitleScene() : CScene()
 	m_Type = SceneType::TitleScene;
 
 	m_TitleImage.Load(L"Resources/Title.png");
-
+	m_LoginUI.Load(L"Resources/UiBox.png");
 	m_PlayerName = "Test";
+
+	m_UiPos[0].x = m_UiPos[1].x = (m_rtClient.right / 5);
+	m_UiPos[0].y = 283; 
+	m_UiPos[1].y = 563;
+
+	m_UiSize.x = (m_rtClient.right / 3) * 2;
+	m_UiSize.y = 50;
+	m_UiAlpha = 255 * 0.60f;
 }
 
 CTitleScene::~CTitleScene()
@@ -20,12 +28,16 @@ void CTitleScene::Update(float timeElapsed)
 }
 
 void CTitleScene::Draw(HDC hdc)
-{
+{ 
 	m_TitleImage.TransparentBlt(hdc, 0, 0, m_rtClient.right, m_rtClient.bottom,
 		0, 0, m_TitleImage.GetWidth(), m_TitleImage.GetHeight(), NULL);
 
-	Rectangle(hdc, 0, 280, m_rtClient.right, 330);
-	Rectangle(hdc, 0, 560, m_rtClient.right, 610);
+	DrawTransparent(hdc, m_UiPos[0].x, m_UiPos[0].y, m_UiSize.x, m_UiSize.y, m_UiAlpha, m_LoginUI);
+	DrawTransparent(hdc, m_UiPos[1].x, m_UiPos[1].y, m_UiSize.x, m_UiSize.y, m_UiAlpha, m_LoginUI);
+
+	//Rectangle(hdc, 0, 280, m_rtClient.right, 330);
+	//Rectangle(hdc, 0, 560, m_rtClient.right, 610);
+
 	wstring wide_string = wstring(m_ServerIp.begin(), m_ServerIp.end());
 	TextOut(hdc, 250, 300, L"Enter ServerIP : ", lstrlen(L"Enter ServerIP : "));
 	TextOut(hdc, 250 + 110, 300, wide_string.c_str(), lstrlen(wide_string.c_str()));

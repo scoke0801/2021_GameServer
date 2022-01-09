@@ -89,8 +89,10 @@ bool SearchUserID(string name, int id)
                             objects[id]->HP = user_hp;
                             objects[id]->EXP = user_exp;
                             objects[id]->GOLD = user_gold;
-                            objects[id]->start_x = objects[id]->x = rand() % 2000;
-                            objects[id]->start_y = objects[id]->y = rand() % 2000;
+                            objects[id]->start_x = objects[id]->x = user_x;
+                            objects[id]->start_y = objects[id]->y = user_y;
+                            //objects[id]->start_x = objects[id]->x = rand() % 2000;
+                            //objects[id]->start_y = objects[id]->y = rand() % 2000;
                             //objects[id]->x = rand() % 2000;
                            // objects[id]->y = rand() % 2000;
 

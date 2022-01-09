@@ -41,7 +41,7 @@ void CScene::DrawTransparent(HDC hdc, int startX, int startY, int sizeX, int siz
 		, hdc, m_rtClient.left, m_rtClient.top, m_rtClient.right, m_rtClient.bottom, NULL);
 
 	targetImage.TransparentBlt(hdc, startX, startY, sizeX, sizeY,
-		0, 0, targetImage.GetWidth(), targetImage.GetHeight(), NULL);
+		0, 0, targetImage.GetWidth(), targetImage.GetHeight(), RGB(255,0,255));
 
 	AlphaBlend(hdc, m_rtClient.left, m_rtClient.top, m_rtClient.right, m_rtClient.bottom
 		, LayDC, 0, 0, m_rtClient.right, m_rtClient.bottom, bf);

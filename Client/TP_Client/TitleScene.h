@@ -31,8 +31,13 @@ private:
 
 private: 
 	CImage m_TitleImage;
+	CImage m_LoginUI;
 
 	string	m_PlayerName;
 	bool m_IsOnTypingID = false;
+
+	Vector2i m_UiSize;
+	Vector2i m_UiPos[2];
+	short m_UiAlpha;
 };
 
